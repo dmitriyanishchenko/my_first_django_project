@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.template import loader
 
 
 def comment_count(request):
@@ -33,5 +34,8 @@ def string_cut(request):
         return HttpResponse(my_result)
     return HttpResponse('It is Get request')
 
+def render_name(request):
+    template = loader.get_template# ('templates/name.html')
+    #return HttpResponse(template.renderg)
 
 # Create your views here.
