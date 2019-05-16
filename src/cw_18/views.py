@@ -19,6 +19,19 @@ def comment_count(request):
         return HttpResponse(result)
     return HttpResponse('It is GET request')
 
+def string_cut(request):
+    if request.method == "POST":
+        comment = request.POST.get('comment')
+        author = request.POST.get('name')
+        add_string = f'(c) {author}'
+        res_split = comment.split('\n')
+        result = []
+        for i in range(len(res_split)):
+            elem = res_split[i]
+            result.append(elem + add_string)
+        my_result = '<br>'.join(result)
+        return HttpResponse(my_result)
+    return HttpResponse('It is Get request')
 
 
 # Create your views here.
