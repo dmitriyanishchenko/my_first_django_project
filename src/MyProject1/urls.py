@@ -16,10 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from myapp.views import index, index2
+from cw_18.views import comment_count
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('index/', index),
-    path('index2/', index2)
+    path('index2/', index2),
+    path('cw_18_1/', comment_count)
 ]
