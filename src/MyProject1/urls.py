@@ -16,13 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from myapp.views import index, index2
-from cw_18.views import render_name
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('index/', index),
     path('index2/', index2),
     path('cw_18_1/', include('cw_18.urls')),
-    path('render_name/', include('cw_18.urls')),
+    path('cw_18/render_name/', include('cw_18.urls')),
 
 ]
