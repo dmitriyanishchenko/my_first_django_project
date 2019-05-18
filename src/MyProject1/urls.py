@@ -22,6 +22,6 @@ urlpatterns = [
     path('index/', index),
     path('index2/', index2),
     path('cw_18_1/', include('cw_18.urls')),
-    path('cw_18/render_name/', include('cw_18.urls')),
+    path('cw_18/', include('cw_18.urls')),
 
 ]
