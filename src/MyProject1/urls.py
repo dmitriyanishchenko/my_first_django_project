@@ -23,5 +23,7 @@ urlpatterns = [
     path('index2/', index2),
     path('cw_18_1/', include('cw_18.urls')),
     path('cw_18/', include('cw_18.urls')),
+    path('hw_18/', include('hw_18.urls')),
+
 
 ]
