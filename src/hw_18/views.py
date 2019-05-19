@@ -12,12 +12,15 @@ def line_to_file(request):
 
     """
     if request.method == "GET":
-        template = loader.get_template('display_line')
+        template = loader.get_template('form_line.html')
         return HttpResponse(template.render({}, request))
     if request.method == "POST":
         name = request.POST.get('name')
         surname = request.POST.get('surname')
         age = request.POST.get('age')
-        template = loader.get_template('display_line.html')
-        return HttpResponse(template.render({'name': name, 'surname': surname, 'age': age}, request))
-
+        result_string = f'{name} {surname} {age}'
+        with open('test_18_2.json', 'w') as my_file:
+            my_file.write(result_string + '\n')
+            my_file.close()
+        template = loader.get_template('form_line.html')
+        return HttpResponse(template.render({}, request))
