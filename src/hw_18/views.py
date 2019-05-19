@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.template import loader
 
 
 def line_to_file(request):
@@ -10,15 +11,13 @@ def line_to_file(request):
     и после  отображать форму
 
     """
+    if request.method == "GET":
+        template = loader.get_template('display_line')
+        return HttpResponse(template.render({}, request))
     if request.method == "POST":
         name = request.POST.get('name')
         surname = request.POST.get('surname')
         age = request.POST.get('age')
-        result_string = f' Name is {name}, surname is {surname}, age is {age}'
-        with open('test.txt', 'w') as my_file:
-            my_file.write('result_string')
-            my_file.close()
-        return HttpResponse(result_string)
-
-
+        template = loader.get_template('display_line.html')
+        return HttpResponse(template.render({'name': name, 'surname': surname, 'age': age}, request))
 
