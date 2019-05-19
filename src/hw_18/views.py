@@ -44,3 +44,15 @@ def file_to_list(request):
         return HttpResponse(template.render({'name': name, 'surname': surname, 'age': age}, request))
 
 
+def return_form(request):
+    """
+    Создать представление. При гет запросе удалить все данные из файла.
+    Вернуть пользователю форму на создание.
+
+    """
+    if request.method == "GET":
+        open('test_18_2.txt', 'w').close()
+        template = loader.get_template('form_line.html')
+        return HttpResponse(template.render({}, request))
+
+
