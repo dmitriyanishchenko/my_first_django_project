@@ -5,22 +5,7 @@
     <form action="{% url "comment_add" %}
 " method="POST">
 
-        <p>
-            Firstname
-            <input type="text" name="firstname">
-        </p>
-        <p>
-            Lastname
-            <input type="text" name="lastname">
-        </p>
-        <p>
-            Age
-            <input type="number" name="age">
-        </p>
-        <p>
-            Comment
-            <textarea name="comment"></textarea>
-        </p>
+        {{ form.as_p }}
         <br><input type="submit" name="submit" , value="Post">
     </form>
 {% endblock %}
