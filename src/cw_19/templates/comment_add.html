@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %} TEST BLOCK {% endblock %}
+
+{% block content %}
 <form action="http://127.0.0.1:8000/cw_19/add/" method="POST">
 
     <p>
@@ -25,5 +22,4 @@
     </p>
     <br><input type="submit" name="submit", value="Post">
 </form>
-</body>
-</html>
+{% endblock %}
