@@ -2,7 +2,8 @@
 {% block title %} TEST BLOCK {% endblock %}
 
 {% block content %}
-    <form action="http://127.0.0.1:8000/cw_19/add/" method="POST">
+    <form action="{% url "comment_add" %}
+" method="POST">
 
         <p>
             Firstname
