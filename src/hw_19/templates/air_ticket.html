@@ -1,10 +1,9 @@
 {% extends "base.html" %}
-{% block title %} TEST BLOCK {% endblock %}
+{% block title %} air ticket {% endblock %}
 
 {% block content %}
     <form action="{% url "air_ticket" %}" method="POST">
-
         {{ form.as_p }}
-        <br><input type="submit" name="submit" , value="Post">
+        <br><input type="submit" name="submit"  value="Post">
     </form>
 {% endblock %}

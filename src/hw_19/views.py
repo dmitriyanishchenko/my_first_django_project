@@ -1,8 +1,7 @@
 from django.shortcuts import render
-
-from django.shortcuts import render
 from django.http import HttpResponse
 from hw_19.forms import PostForm
+from django.template import loader
 
 
 def air_ticket(request):
@@ -20,12 +19,19 @@ def air_ticket(request):
             city_to = data.get('city_to')
             number = data.get('number')
             date = data.get('date')
-            print(f'{name}|{city_from}|{city_to}|{number}|{date}')
-            context = {'form': form}
-            return render(request, 'air_ticket.html', context)
+
+            if number == 1:
+                cost = 100
+                template = loader.get_template('display1_line.html')
+                return HttpResponse(template.render({'name': name, 'city_from': city_from, 'number': number,
+                                                     'city_to': city_to, 'date': date, 'cost': cost}, request))
+
+            elif number > 1:
+                cost = number * 2 * 100
+                template = loader.get_template('display1_line.html')
+                return HttpResponse(template.render({'name': name, 'city_from': city_from, 'number': number,
+                                                     'city_to': city_to, 'date': date, 'cost': cost}, request))
         else:
             errors = form.errors
             return HttpResponse(f'{errors}')
     return HttpResponse('Wrong request method')
-
-# Create your views here.

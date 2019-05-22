@@ -6,4 +6,4 @@ class PostForm(forms.Form):
     city_from = forms.CharField(max_length=20)
     city_to = forms.CharField(max_length=20)
     number = forms.IntegerField(min_value=0, max_value=50)
-    date = forms.DateField()
+    date = forms.CharField(max_length=20)
