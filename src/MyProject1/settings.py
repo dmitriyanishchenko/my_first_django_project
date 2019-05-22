@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'cw_18',
     'hw_18',
     'cw_19',
+    'hw_19'
 ]
 
 MIDDLEWARE = [
@@ -61,6 +62,7 @@ TEMPLATES = [
         'DIRS': [
             'templates',
             'cw_19.templates',
+            'hw_19.templates'
         ],
         'APP_DIRS': True,
         'OPTIONS': {
