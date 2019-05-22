@@ -5,23 +5,24 @@ from django.http import HttpResponse
 from hw_19.forms import PostForm
 
 
-def comment_add(request):
+def air_ticket(request):
     if request.method == 'GET':
         form = PostForm()
         context = {'form': form}
-        return render(request, 'comment_add.html', context)
+        return render(request, 'air_ticket.html', context)
     elif request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
 
-            firstname = data.get('firstname')
-            lastname = data.get('lastname')
-            age = data.get('age')
-            comment = data.get('comment')
-            print(f'{firstname}|{lastname}|{age}|{comment}')
+            name = data.get('name')
+            city_from = data.get('city_from')
+            city_to = data.get('city_to')
+            number = data.get('number')
+            date = data.get('date')
+            print(f'{name}|{city_from}|{city_to}|{number}|{date}')
             context = {'form': form}
-            return render(request, 'comment_add.html', context)
+            return render(request, 'air_ticket.html', context)
         else:
             errors = form.errors
             return HttpResponse(f'{errors}')

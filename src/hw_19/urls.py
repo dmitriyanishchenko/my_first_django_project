@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import comment_add
+from .views import air_ticket
 
 urlpatterns = [
-    path('add/', comment_add, name='comment_add'),
+    path('air/', air_ticket, name='air_ticket'),
 ]
