@@ -29,14 +29,10 @@ def air_ticket(request):
             date = data.get('date')
             if number == 1:
                 cost = 100
-                template = loader.get_template('display1_line.html')
-                return HttpResponse(template.render({'name': name, 'city_from': city_from, 'number': number,
-                                                     'city_to': city_to, 'date': date, 'cost': cost}, request))
             elif number > 1:
                 cost = number * 2 * 100
-                template = loader.get_template('display1_line.html')
-                return HttpResponse(template.render({'name': name, 'city_from': city_from, 'number': number,
-                                                     'city_to': city_to, 'date': date, 'cost': cost}, request))
+            return render(request, 'display1_line.html', {'name': name, 'city_from': city_from, 'number': number,
+                                                              'city_to': city_to, 'date': date, 'cost': cost})
         else:
             errors = form.errors
             return HttpResponse(f'{errors}')
