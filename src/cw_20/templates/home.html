@@ -1,6 +1,31 @@
-{% extends "base.html" %}
-{% block title %} home {% endblock %}
+{% extends 'base.html' %}
+
+{% block title %}home{% endblock %}
 
 {% block content %}
-    HOME PAGE
+    <p align="center">HOME PAGE</p>
+
+    <table align="center" border="2">
+        <tr>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Age</th>
+            <th>Profession</th>
+            <th>Actions</th>
+        </tr>
+        {% for customer in customers %}
+            <tr>
+                <td>{{ customer.firstname }}</td>
+                <td>{{ customer.lastname }}</td>
+                <td>{{ customer.age }}</td>
+                <td>{{ customer.profession }}</td>
+                <td>
+                    <a href="{% url 'edit_customer' customer.id %}">Edit</a>
+                    <a href="{% url 'remove_customer' customer.id %}">Remove</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <p align="center"><a href="{% url 'create_customer' %}">Add new</a></p>
 {% endblock %}

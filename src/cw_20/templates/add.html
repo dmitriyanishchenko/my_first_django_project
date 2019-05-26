@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}ADD{% endblock %}
+
+{% block content %}
+<form action="{% url 'create_customer' %}" method="POST">
+    {{ form.as_p }}
+    <br><input type="submit" name="submit" value="Post">
+</form>
+{% endblock %}
