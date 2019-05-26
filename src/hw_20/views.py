@@ -3,33 +3,38 @@ from django.shortcuts import (
     render,
     redirect,
 )
-from .models import Car
+# from .models import Car
 from .forms import CarForm
+from .models import Car
 
 
 def home(request):
     cars = Car.objects.all()
     context = {'cars': cars}
-    return render(request, 'home.html', context)
+    return render(request, 'home_car.html', context)
 
 
 def create_car(request):
     if request.method == 'GET':
         context = {'form': CarForm()}
-        return render(request, 'add.html', context)
+        return render(request, 'add_car.html', context)
     elif request.method == 'POST':
         form = CarForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            brand = data.get('brand') # todo
-            lastname = data.get('lastname')
-            age = data.get('age')
-            profession = data.get('profession')
-            Customer.objects.create(
-                firstname=firstname,
-                lastname=lastname,
-                age=age,
-                profession=profession,
+            brand = data.get('brand')
+            model = data.get('model')
+            color = data.get('color')
+            weight = data.get('weight')
+            fullname = data.get('fullname')
+            year = data.get('year')
+            Car.objects.create(
+                brand=brand,
+                model=model,
+                color=color,
+                weight=weight,
+                fullname=fullname,
+                year=year,
             )
             return redirect('home')
         else:
@@ -38,30 +43,34 @@ def create_car(request):
     return HttpResponse('Wrong request method')
 
 
-def edit_customer(request, customer_id):
-    customer = Customer.objects.get(id=customer_id)
+def edit_car(request, car_id):
+    car = Car.objects.get(id=car_id)
     if request.method == 'GET':
         context = {
-            'customer_id': customer_id,
-            'form': CustomerForm(
+            'car_id': car_id,
+            'form': CarForm(
                 initial={
-                    'firstname': customer.firstname,
-                    'lastname': customer.lastname,
-                    'age': customer.age,
-                    'profession': customer.profession,
+                    'brand': car.brand,
+                    'model': car.model,
+                    'color': car.color,
+                    'weight': car.weight,
+                    'fullname': car.fullname,
+                    'year': car.year,
                 },
             ),
         }
-        return render(request, 'edit.html', context)
+        return render(request, 'edit_car.html', context)
     elif request.method == 'POST':
-        form = CustomerForm(request.POST)
+        form = CarForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
-            Customer.objects.filter(id=customer_id).update(
-                firstname=data.get('firstname'),
-                lastname=data.get('lastname'),
-                age=data.get('age'),
-                profession=data.get('profession'),
+            Car.objects.filter(id=car_id).update(
+                brand=data.get('brand'),
+                model=data.get('model'),
+                color=data.get('color'),
+                weight=data.get('weight'),
+                fullname=data.get('fullname'),
+                year=data.get('year'),
             )
             return redirect('home')
         else:
@@ -70,8 +79,8 @@ def edit_customer(request, customer_id):
     return HttpResponse('Wrong request method')
 
 
-def remove_customer(request, customer_id):
-    customer = Customer.objects.get(id=customer_id)
-    print(f'{customer.firstname} has been removed')
-    customer.delete()
+def remove_car(request, car_id):
+    car = Car.objects.get(id=car_id)
+    print(f'{car.brand} has been removed')
+    car.delete()
     return redirect('home')
