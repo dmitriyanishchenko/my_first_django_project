@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}home{% endblock %}
+
+{% block content %}
+    <p align="center">HOME PAGE</p>
+
+    <table align="center" border="2">
+        <tr>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Color</th>
+            <th>Weight</th>
+            <th>Full name</th>
+            <th>Year</th>
+            <th>Actions</th>
+        </tr>
+        {% for car in cars %}
+            <tr>
+                <td>{{ car.brand }}</td>
+                <td>{{ car.model }}</td>
+                <td>{{ car.color }}</td>
+                <td>{{ car.weight }}</td>
+                <td>{{ car.fullname }}</td>
+                <td>{{ car.year }}</td>
+                <td>
+                    <a href="{% url 'edit_car' car.id %}">Edit</a>
+                    <a href="{% url 'remove_car' car.id %}">Remove</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <p align="center"><a href="{% url 'create_car' %}">Add new</a></p>
+{% endblock %}
