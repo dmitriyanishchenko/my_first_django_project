@@ -8,4 +8,7 @@ class Car(models.Model):
     weight = models.IntegerField()
     fullname = models.CharField(max_length=255)
     year = models.CharField(max_length=255)
+
+
+
 # Create your models here.

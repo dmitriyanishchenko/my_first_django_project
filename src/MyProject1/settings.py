@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'cw_19',
     'hw_19',
     'cw_20',
+    'cw_21',
     'hw_20',
 ]
 
