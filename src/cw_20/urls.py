@@ -7,7 +7,7 @@ from .views import (
 )
 
 urlpatterns = [
-    path('home/', home, name='home'),
+    path('home/', home, name='home_customer'),
     path('add/', create_customer, name='create_customer'),
     path('edit/<int:customer_id>', edit_customer, name='edit_customer'),
     path('remove/<int:customer_id>', remove_customer, name='remove_customer'),

@@ -8,16 +8,19 @@ from .forms import CustomerForm
 
 
 def home(request):
+    request.session['hello'] = 'world'
     customers = Customer.objects.all()
     context = {'customers': customers}
     return render(request, 'home.html', context)
 
 
 def create_customer(request):
+
     if request.method == 'GET':
         context = {'form': CustomerForm()}
         return render(request, 'add.html', context)
     elif request.method == 'POST':
+        print(request.session.get('hello'))
         form = CustomerForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
@@ -31,7 +34,7 @@ def create_customer(request):
                 age=age,
                 profession=profession,
             )
-            return redirect('home')
+            return redirect('home_customer')
         else:
             errors = form.errors
             return HttpResponse(f'{errors}')
@@ -63,7 +66,7 @@ def edit_customer(request, customer_id):
                 age=data.get('age'),
                 profession=data.get('profession'),
             )
-            return redirect('home')
+            return redirect('home_customer')
         else:
             errors = form.errors
             return HttpResponse(f'{errors}')
@@ -74,4 +77,4 @@ def remove_customer(request, customer_id):
     customer = Customer.objects.get(id=customer_id)
     print(f'{customer.firstname} has been removed')
     customer.delete()
-    return redirect('home')
+    return redirect('home_customer')
